@@ -1,32 +1,19 @@
 package hotel.service;
 
-import hotel.model.Customer;
+import hotel.entity.Customer;
+import hotel.Dao.CustomerDao;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
 
 public class CustomerService {
 
-    private static final CustomerService SINGLETON = new CustomerService();
-
-    private final Map<String, Customer> customers = new HashMap<>();
-
-    private CustomerService() {}
-
-    public static CustomerService getSingleton() {
-        return SINGLETON;
+    public void addCustomer(Customer customer) throws SQLException {
+        CustomerDao dao = new CustomerDao();
+        dao.addCustomer(customer);
     }
 
-    public void addCustomer(final String email, final String firstName, final String lastName) {
-        customers.put(email, new Customer(firstName, lastName, email));
-    }
-
-    public Customer getCustomer(final String customerEmail) {
-        return customers.get(customerEmail);
-    }
-
-    public Collection<Customer> getAllCustomers() {
-        return customers.values();
+    public Customer getCustomerByName(String name) throws SQLException {
+        CustomerDao dao = new CustomerDao();
+        return dao.getCustomerByName(name);
     }
 }

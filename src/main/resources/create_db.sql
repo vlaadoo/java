@@ -21,3 +21,4 @@ CREATE TABLE IF NOT EXISTS hotel.reservation (
     `check_out_date` date NOT NULL,
 	CONSTRAINT fk_customer_id FOREIGN KEY ( cust_id ) REFERENCES hotel.customers( customer_id ) ON DELETE RESTRICT ON UPDATE RESTRICT
  ) engine=InnoDB;
+
